@@ -3,6 +3,7 @@ import { clickBoxList, ent, gui, consider, boxSizes } from './GAME_data.js';
 import { actionIcons } from "./GUI_icons.js";
 import { genID } from "./UTIL_idGen.js";
 import { newBattle } from "./UTIL_battle.js";
+import { d20 } from "./UTIL_dice.js";
 
 let clicked = 'no intersection';
 let hp_idx = 0;
@@ -132,9 +133,9 @@ export function processInput(canvas, event, raycaster, camera){
                     }
                     
                     if( host.name === 'box_hit1'){
-                        const hp = ['100', '110', '85', '99', '117'];
+                        const hp = [ 100, 110, 85, 99, 117 ];
                         UI.hitText({
-                            text: hp[hp_idx],
+                            text: `${ hp[hp_idx] + d20() }`,
                             color: 'hitRed',
                             position: ent['player1'].glb.position,
                             camera: game.camera,
@@ -144,9 +145,9 @@ export function processInput(canvas, event, raycaster, camera){
                         if(hp_idx === hp.length){ hp_idx = 0; }
                     } else if( host.name === 'box_heal1'){
                         console.log("box_heal1 reached");
-                        const heal = ['100', '110', '85', '99', '117'];
+                        const heal = [ 100, 110, 85, 99, 117 ];
                         UI.hitText({
-                            text: heal[heal_idx],
+                            text: `${ heal[heal_idx] + d20() }`,
                             color: 'healGreen',
                             position: ent['player1'].glb.position,
                             camera: game.camera,
@@ -156,7 +157,8 @@ export function processInput(canvas, event, raycaster, camera){
                         if(heal_idx === heal.length){ heal_idx = 0; }
                     } else if( host.name === 'box_info1' ){
                         console.log("box_info1 reached");
-                        const info = ['found potion', 'level 33', 'sword +1% (94%)' ];
+                        const info = ['found potion', 'level up (33)', 'sword +1% (94%)',
+                            'found 34 silver', 'found 10 gold', 'parry +3% (88%)' ];
                         UI.hitText({
                             text: info[info_idx],
                             color: 'infoYellow',
