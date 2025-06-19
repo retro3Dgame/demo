@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulpanet Demo</title>
+    
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <style> 
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #111213;
+        }
+
+        #game-container{
+            position: relative;
+            display: fixed;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            max-width: 100vw;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            container-type: size;
+        }
+
+        .dialogue{
+            position: absolute;
+            border: 1cqmin solid rgba(170,170,170,0.8);
+            border-radius: 3cqmin;
+            bottom: 5%;
+            right: 5%;
+            width: 40%;
+            font-family: "Geist Mono", monospace;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 4cqmin;
+            background: rgba(0,0,0,0.7);
+            padding: 4cqmin;
+            color: #dddfdc;
+            z-index: 10;
+        }
+
+        .dialogue_init{
+            position: absolute;
+            border: 1cqmin solid rgba(170,170,170,0.8);
+            border-radius: 3cqmin;
+            bottom: 20%;
+            left: 20%;
+            width: 40%;
+            visibility: false;
+            font-family: "Geist Mono", monospace;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 4cqmin;
+            background: rgba(0,0,0,0.7);
+            padding: 4cqmin;
+            color: #dddfdc;
+            z-index: -10;
+        }
+
+        /*  style inserted inline instead for variable data
+        .hitText{
+            position: absolute;
+            border: none;
+            width: 30%;
+            font-family: "Helvetica";
+            font-weight: 500;
+            font-style: normal;
+            font-size: 4cqmin;
+            background: rgba(0,0,0,0.0);
+            padding: 4cqmin;
+            color: #dddfdc;
+            z-index: 10;
+        } */
+
+        .textVis{
+            color: rgba(240, 240, 240, 1.0);
+            text-shadow: 0.5cqmin 0.5cqmin 2cqmin #bbbdba;
+        }
+
+        .hitTextVis{
+            color: rgba(200, 200, 200, 1.0);
+            text-shadow: 0.3cqmin 0.3cqmin 1.1cqmin #aaaaaa;
+        }
+
+        .textInvis{
+            color: rgba(0,0,0,0.0);
+        }
+        /* consideration colors */
+        .weak { color: #ffaaff; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #cc99cc;}
+        .hardly { color: #66ccf0; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #44aae2;}
+        .easy { color: #4499ff; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #2277dd;}
+        .worthy { color: #00ff80; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #00e070;}
+        .formidable { color: #ceff00; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #9acc00;}
+        .miracle { color: #ffcc00; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #ddaa00;}
+        .tremble { color: #ff4400; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #dd2200;}
+        .dire { color: #9b0000; text-shadow: 0.5cqmin 0.5cqmin 2cqmin #800000;}
+
+        /* HP text colors (damage / heal) */
+        .hitRed { color: #dd2233; text-shadow: 0cqmin 0cqmin 0.7cqmin #880011;}
+        .healGreen { color: #33cc22; text-shadow: 0cqmin 0cqmin 0.7cqmin #117000;}
+        .infoYellow { color: #ffee00; text-shadow: 0cqmin 0cqmin 0.7cqmin #ccbb00;}
+        
+        .actionIcon{
+            position: absolute; 
+            z-index: 10; 
+            height: auto;
+            transition: width 1.5s ease; 
+            width: 0%;
+        }
+        .actionIcon.active{
+            width: 7%;
+        }
+        
+        @keyframes hitTextFade {
+            0% {
+                letter-spacing: 1px;
+                opacity: 1;
+                transform: translate(-50%, -50%) translateY(0);
+            }
+            27% {
+                letter-spacing: 2px;
+                opacity: 1;
+                transform: translate(-50%, -50%) translateY(-10px);
+                animation-timing-function: linear;
+            }
+            29% {
+                letter-spacing: 2px;
+                opacity: 0.4;
+                transform: translate(-50%, -50%) translateY(-10px);
+                animation-timing-function: linear;
+            }
+            100% {
+                letter-spacing: 4px; 
+                opacity: 0;
+                transform: translate(-50%, -50%) translateY(-30px); /* Adjust rise amount as needed */
+                animation-timing-function: ease;
+            }
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div id="game-container"></div>
+    <!-- using Three.js version 0.175.0 -->
+    <script type="module" src="./scripts/MAIN.js"></script> 
+</body>
+</html>
