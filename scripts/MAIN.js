@@ -51,6 +51,7 @@ Promise.all([
     loadModel('box_hit', './models/box_hit.glb'),
     loadModel('box_heal', './models/box_heal.glb'),
     loadModel('box_info', './models/box_info.glb'),
+    loadModel('box_wire', './models/box_wire.glb'),
 ]).then(() => {
     genMaterials();
     testScene();

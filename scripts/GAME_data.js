@@ -21,6 +21,7 @@ export const boxSizes = {
     "box_hit": { x: 1.0, y: 2.0, z: 1.0 },
     "box_heal": { x: 1.0, y: 2.0, z: 1.0 },
     "box_info": { x: 1.0, y: 2.0, z: 1.0 },
+    "box_wire": { x: 1.0, y: 2.0, z: 1.0 },
 };
 
 const tloader = new TextureLoader();
