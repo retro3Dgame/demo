@@ -30,6 +30,7 @@ const vec = {
     "box_hit": vec3(-20,0,-40),
     "box_heal": vec3(20,0,-40),
     "box_info": vec3(0,0,-40),
+    "box_wire": vec3(40, 0, -40),
 }
 
 export function testScene(){
@@ -108,6 +109,8 @@ ambient humming.',
     ent['box_heal1'].scale(3);
     spawnBoxButton('box_info', 'box_info1', vec.box_info, game.scene);
     ent['box_info1'].scale(3);
+    spawnBoxButton('box_wire', 'box_wire1', vec.box_wire, game.scene);
+    ent['box_wire1'].scale(3);
 
     //const ballID = plasmaball( 'plasmaball', vec.plasma, game.scene );
     //setTimeout( ent[ ballID ].remove, 2500 );
